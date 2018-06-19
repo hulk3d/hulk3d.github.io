@@ -1,0 +1,93 @@
+/*
+.slotholder {
+	opacity: 0.8;
+}
+*/
+
+/* Call To Action Section
+--------------------------------*/
+#call-to-action {
+  background: linear-gradient(rgba(0, 142, 99, 0.1), rgba(0, 0, 0, 0.1)), url(../img/full/6.jpg) fixed center center;
+  background-size: cover;
+  padding: 60px 0;
+}
+
+#call-to-action h3 {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+#call-to-action p {
+  color: #fff;
+}
+
+#call-to-action .cta-btn {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 18px 38px;
+  border-radius: 25px;
+  transition: 0.5s;
+  margin-top: 5px;
+  border: 2px solid #fff;
+  color: #fff;
+  background: #18d26e;
+}
+
+#call-to-action .cta-btn:hover {
+  background: #18d26e;
+  border: 2px solid #18d26e;
+}
+
+/* Call To Action Section
+--------------------------------*/
+
+/* Call To Action2 Section
+--------------------------------*/
+#call-to-action2 {
+  background: linear-gradient(rgba(0, 142, 99, 0.1), rgba(0, 0, 0, 0.1)), url(../img/call-to-action-bg2.html) fixed center center;
+  background-size: cover;
+  padding: 60px 0;
+}
+
+#call-to-action2 h3 {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+}
+
+#call-to-action2 p {
+  color: #fff;
+}
+
+#call-to-action2 .cta-btn {
+  font-family: "Montserrat", sans-serif;
+  text-transform: uppercase;
+  font-weight: 500;
+  font-size: 30px;
+  letter-spacing: 1px;
+  display: inline-block;
+  padding: 18px 38px;
+  border-radius: 25px;
+  transition: 0.5s;
+  margin-top: 5px;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+#call-to-action2 .cta-btn:hover {
+  background: #18d26e;
+  border: 2px solid #18d26e;
+}
+
+/* Call To Action2 Section
+--------------------------------*/
+
+/* Alerts */
+.alertify-logs {
+  z-index: 9999;
+}
