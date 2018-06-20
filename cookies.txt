@@ -1,0 +1,4 @@
+# HTTrack Website Copier Cookie File
+# This file format is compatible with Netscape cookies
+.powh.io	TRUE	/	FALSE	1999999999	__cfduid	d54f25608370e2c56d3bd160cae6e99361529136899
+

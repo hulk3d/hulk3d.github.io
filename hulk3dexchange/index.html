@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+        <!-- strongserver -->
+	
+<head>
+		<meta charset="UTF-8">
+		<title>Hulk3D - Exchange</title>
+		<link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/style.css" rel="stylesheet">
+		<link href="css/colors/megna.css" rel="stylesheet">
+		
+		<!-- Favicon Icon -->
+		<link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/apple-touch-iconbd01.html?v=A0e99BGweR">
+		<link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/favicon-32x32bd01.html?v=A0e99BGweR">
+		<link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/favicon-16x16bd01.html?v=A0e99BGweR">
+		<link rel="manifest" href="assets/images/favicon/sitebd01.html?v=A0e99BGweR">
+		<link rel="shortcut icon" href="assets/images/favicon/faviconbd01.html?v=A0e99BGweR">
+		<meta name="msapplication-TileColor" content="#00aba9">
+		<meta name="msapplication-config" content="assets/images/favicon/browserconfigbd01.html?v=A0e99BGweR">
+		<meta name="theme-color" content="#ffffff">
+
+        <!-- chartist CSS -->
+        <link href="assets/plugins/chartist-js/dist/chartist.min.css" rel="stylesheet">
+        <link href="assets/plugins/chartist-js/dist/chartist-init.css" rel="stylesheet">
+        <link href="assets/plugins/chartist-plugin-tooltip-master/dist/chartist-plugin-tooltip.css" rel="stylesheet">
+        <link href="assets/plugins/css-chart/css-chart.css" rel="stylesheet">
+
+         <!-- Footable CSS -->
+        <link href="assets/plugins/footable/css/footable.core.css" rel="stylesheet">
+        <link href="assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet" />
+    
+        <!-- Alertify -->
+        <link rel="stylesheet" href="css/alertify.css">
+
+		<link rel="stylesheet" href="css/base.css">
+		<script type="text/javascript" src="js/web3.min.js"></script>
+		<script type="text/javascript">        			
+			if (typeof web3 !== 'undefined') {
+				web3 = new Web3(web3.currentProvider);
+			} else {
+				// set the provider you want from Web3.providers
+				web3 = new Web3(new Web3.providers.HttpProvider("https://ropsten.infura.io/CPWEQzL1SIL9zfUTNu7D"));
+			}
+			function getBalance() {
+				var address, wei, balance
+				address = document.getElementById("address").value
+				try {
+					web3.eth.getBalance(address, function (error, wei) {
+						if (!error) {
+							var balance = web3.fromWei(wei, 'ether');
+							document.getElementById("output").innerHTML = balance + " ETH";
+						}
+					});
+				} catch (err) {
+					document.getElementById("output").innerHTML = err;
+				}
+			}
+			const hulk3dContractABI = JSON.parse('[{"constant":true,"inputs":[{"name":"_customerAddress","type":"address"}],"name":"dividendsOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"name","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_ethereumToSpend","type":"uint256"}],"name":"calculateTokensReceived","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalSupply","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_tokensToSell","type":"uint256"}],"name":"calculateEthereumReceived","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"decimals","outputs":[{"name":"","type":"uint8"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[],"name":"withdraw","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":true,"inputs":[],"name":"sellPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"stakingRequirement","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_includeReferralBonus","type":"bool"}],"name":"myDividends","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"totalEthereumBalance","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[{"name":"_customerAddress","type":"address"}],"name":"balanceOf","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"buyPrice","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"myTokens","outputs":[{"name":"","type":"uint256"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":true,"inputs":[],"name":"symbol","outputs":[{"name":"","type":"string"}],"payable":false,"stateMutability":"view","type":"function"},{"constant":false,"inputs":[{"name":"_toAddress","type":"address"},{"name":"_amountOfTokens","type":"uint256"}],"name":"transfer","outputs":[{"name":"","type":"bool"}],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_amountOfTokens","type":"uint256"}],"name":"sell","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[],"name":"exit","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"constant":false,"inputs":[{"name":"_referredBy","type":"address"}],"name":"buy","outputs":[{"name":"","type":"uint256"}],"payable":true,"stateMutability":"payable","type":"function"},{"constant":false,"inputs":[],"name":"reinvest","outputs":[],"payable":false,"stateMutability":"nonpayable","type":"function"},{"payable":true,"stateMutability":"payable","type":"fallback"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"incomingEthereum","type":"uint256"},{"indexed":false,"name":"tokensMinted","type":"uint256"},{"indexed":true,"name":"referredBy","type":"address"}],"name":"onTokenPurchase","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"tokensBurned","type":"uint256"},{"indexed":false,"name":"ethereumEarned","type":"uint256"}],"name":"onTokenSell","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"ethereumReinvested","type":"uint256"},{"indexed":false,"name":"tokensMinted","type":"uint256"}],"name":"onReinvestment","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"customerAddress","type":"address"},{"indexed":false,"name":"ethereumWithdrawn","type":"uint256"}],"name":"onWithdraw","type":"event"},{"anonymous":false,"inputs":[{"indexed":true,"name":"from","type":"address"},{"indexed":true,"name":"to","type":"address"},{"indexed":false,"name":"tokens","type":"uint256"}],"name":"Transfer","type":"event"}]');
+			const hulk3dContract = web3.eth.contract(hulk3dContractABI);
+			var myAddress = '0x60F9a1fFe4fcC7f4ee1b81FFF5eeFB88F707C69F';
+			var tknAddress = (myAddress).substring(2);
+			var hulk3dAddress = '0x0eA9119b9F6c4a1534a1f1FeBd74FfF721b0E51F';
+			var contractData = ('0x70a08231000000000000000000000000' + tknAddress);
+			const hulk3d = hulk3dContract.at(hulk3dAddress);
+			function getToken() {
+				var address, wei, balance
+				address = document.getElementById("address").value
+				try {
+					balance = hulk3d.balanceOf(address).toNumber()/1000000000000000000;
+					document.getElementById("output2").innerHTML = balance + " Hulk3D tokens";
+				} catch (err) {
+					document.getElementById("output2").innerHTML = err;
+				}
+			}
+			console.log(hulk3d);
+		</script>
+	</head>
+
+	<body class="fix-header card-no-border logo-center">
+		<div class="preloader" style="display: none;">
+        <svg class="circular" viewBox="25 25 50 50">
+            <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"></circle> </svg>
+    	</div>
+
+<div id="main-wrapper">
+        <!-- ============================================================== -->
+        <!-- Topbar header - style you can find in pages.scss -->
+        <!-- ============================================================== -->
+        <header class="topbar">
+            <nav class="navbar top-navbar navbar-expand-md navbar-light">
+                <!-- ============================================================== -->
+                <!-- Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="index.html">
+                        <!-- Logo icon --><b>
+                            <!--You can put here icon as well // <i class="wi wi-sunset"></i> //-->
+                            <!-- Dark Logo icon -->
+                            <img src="../i.imgur.com/YxyQNqS.png" alt="homepage" class="dark-logo">
+                            <!-- Light Logo icon -->
+                            <img src="../i.imgur.com/YxyQNqS.png" alt="homepage" class="light-logo symbol">
+                        </b>
+                        <!--End Logo icon -->
+                        <!-- Logo text --><span>
+                         <!-- dark Logo text -->
+                         <img src="../i.imgur.com/YxyQNqS.png" alt="homepage" class="dark-logo">
+                         <!-- Light Logo text -->    
+                         3D</a>
+                </div>
+                <!-- ============================================================== -->
+                <!-- End Logo -->
+                <!-- ============================================================== -->
+                <div class="navbar-collapse">
+                    <!-- ============================================================== -->
+                    <!-- toggle and nav items -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav mr-auto mt-md-0" id="userNavBar">
+                        
+                    </ul>
+                    <!-- ============================================================== -->
+                    <!-- User profile and search -->
+                    <!-- ============================================================== -->
+                    <ul class="navbar-nav my-lg-0" id="globalNavBar">
+                         <!-- ============================================================== -->
+    <!-- Language -->
+    <!-- ============================================================== -->
+    <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle text-muted waves-effect waves-dark" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> <i class="flag-icon flag-icon-us"></i></a>
+        <div class="dropdown-menu dropdown-menu-right scale-up">
+            <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-us"></i> English</a>
+            <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-in"></i> हिंदी</a>
+            <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-fr"></i> Français</a>
+            <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-cn"></i> 中文</a>
+            <a class="dropdown-item" href="#"><i class="flag-icon flag-icon-de"></i> Deutsche</a>
+        </div>
+    </li>
+                        
+                    </ul>
+                </div>
+            </nav>
+            <div class="row quote">
+            </div>
+        </header>
+        <!-- ============================================================== -->
+        <!-- End Topbar header -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <aside class="left-sidebar">
+            <!-- Sidebar scroll-->
+            <div class="scroll-sidebar">
+                <!-- Sidebar navigation-->
+                <nav class="sidebar-nav active">
+                    <ul id="sidebarnav" class="in">
+                        <li class="nav-small-cap">PERSONAL</li>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="http://hulk3d.io" aria-expanded="false"><i class="mdi mdi-cash-usd"></i><span class="hide-menu">HULK3D HOME</span></a>
+                        </li>
+						<li> <a class="has-arrow waves-effect waves-dark" href="index.html" aria-expanded="false"><i class="mdi mdi-cash-usd"></i><span class="hide-menu">CHECK BALANCE</span></a>
+                        </li>
+                        <li class="two-column"> <a class="has-arrow waves-effect waves-dark" href="check-price.html" aria-expanded="false"><i class="mdi mdi-radio-tower"></i><span class="hide-menu">CHECK PRICE</span></a>
+                        </li>
+						<li class="two-column"> <a class="has-arrow waves-effect waves-dark" href="check-dividend.html" aria-expanded="false"><i class="mdi mdi-radio-tower"></i><span class="hide-menu">CHECK DIVIDEND</span></a>
+                        </li>
+                        <li class="nav-small-cap">FORMS, TABLE &amp; WIDGETS</li>
+                        </li>                        
+                        <li> <a target="_new" class="has-arrow waves-effect waves-dark" href="https://ropsten.etherscan.io/address/0x0ea9119b9f6c4a1534a1f1febd74fff721b0e51f" aria-expanded="false"><i class="mdi mdi-barcode"></i><span class="hide-menu">EXPLORER</span></a>
+                        </li>
+                     <!--    <li  class="two-column">
+                            <i class="mdi mdi-barcode"></i> <a class="has-arrow waves-effect waves-dark" href="">Explorer (Etherscan)</a>
+                        </li> -->
+                    </ul>
+                </nav>
+                <!-- End Sidebar navigation -->
+            </div>
+            <!-- End Sidebar scroll-->
+        </aside>
+        <!-- ============================================================== -->
+        <!-- End Left Sidebar - style you can find in sidebar.scss  -->
+        <!-- ============================================================== -->
+        <!-- ============================================================== -->
+        <!-- Page wrapper  -->
+        <!-- ============================================================== -->
+        <div class="page-wrapper" style="min-height: 558px;">
+            <div class="row page-titles">
+							<div class="col-md-5 align-self-center">
+								<h3 class="text-themecolor">Check Balance</h3>
+							</div>
+						</div>
+						<div class="container-fluid">
+							<div class="row">
+								<div class="col-md-12 purchase-tokens">
+									<div class="card">
+										<div class="card-header"> Check Hulk3D Tokens Balance
+										</div>
+										<div class="card-body text-center">
+											<h4 class="card-title">Hulk3D Checker</h4>
+											<div class="row">
+												<div class="col-md-4 center">
+													<div class="form-group">
+														<input id="address" type="text" class="form-control" placeholder="ETH Address">
+														</div>
+													</div>
+												</div>
+												<span>Type your ETH Address above to instantly see your balance.</span>
+												<p class="card-text"></p>												
+												<button id="buyTokenSubmit" class="btn btn-lg btn-info" onClick="getToken()">Check My Hulk3D</button>												
+												<span><div class="card-title" id="output2" type="text"></div></span>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>      
+            <footer class="footer">
+                This is an entertainment platform, not an investment platform, are you not entertained?.
+            </footer>
+            <!-- ============================================================== -->
+            <!-- End footer -->
+            <!-- ============================================================== -->
+        </div>
+        <!-- ============================================================== -->
+        <!-- End Page wrapper  -->
+        <!-- ============================================================== -->
+    </div>
+
+
+		<script src="assets/plugins/jquery/jquery.min.js"></script>
+	    <script src="assets/plugins/bootstrap/js/popper.min.js"></script>
+	    <script src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+	    <script src="js/jquery.slimscroll.js"></script>
+	    <script src="js/waves.js"></script>
+	    <script src="js/sidebarmenu.js"></script>
+	    <script src="assets/plugins/sticky-kit-master/dist/sticky-kit.min.js"></script>
+	    <script src="assets/plugins/sparkline/jquery.sparkline.min.js"></script>
+        <!-- Footable -->
+        <script src="assets/plugins/footable/js/footable.all.min.js"></script>
+        <script src="assets/plugins/bootstrap-select/bootstrap-select.min.js" type="text/javascript"></script>
+        <script src="assets/plugins/gauge/gauge.min.js"></script>
+        <script src="js/alertify.js"></script>
+
+	</body>
+
+
+</html>
